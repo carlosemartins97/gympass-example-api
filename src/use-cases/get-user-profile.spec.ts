@@ -36,19 +36,8 @@ describe('Get Profile Use Case', () => {
   })
 
   it('should not be able to get user profile with wrong id', async () => {
-    const email = 'jhon@teste.com'
-    const password = '123456'
-
-    const createdUser = await userRepository.create({
-      name: 'John',
-      email,
-      password_hash: await hash(password, 6)
-    })
-
-
-
     await expect(async () => {
-      const { user } = await sut.execute({
+      await sut.execute({
         userId: 'non-existing-id'
       })
     }).rejects.toBeInstanceOf(ResourceNotFoundError)
