@@ -6,6 +6,8 @@ import { env } from './env';
 import { checkInsRoutes } from './http/controllers/check-ins/routes';
 import { gymsRoutes } from './http/controllers/gyms/routes';
 import { usersRoutes } from './http/controllers/users/routes';
+import cors from '@fastify/cors'
+
 
 
 export const app = fastify();
@@ -21,6 +23,7 @@ app.register(fastifyJwt, {
   }
 });
 
+app.register(cors)
 app.register(fastifyCookie);
 
 app.register(usersRoutes);
