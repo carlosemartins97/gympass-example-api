@@ -26,7 +26,8 @@ export class PrismaGymsRepository implements GymsRepository {
     const gyms = await prisma.gym.findMany({
       where: {
         title: {
-          contains: query
+          contains: query,
+          mode: 'insensitive'
         }
       },
       take: 20,
